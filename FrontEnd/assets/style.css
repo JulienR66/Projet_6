@@ -99,6 +99,7 @@ nav li {
 li:hover {
 	color: #B1663C;
 }
+
 #introduction {
 	display: flex;
 	align-items: center;
@@ -217,3 +218,49 @@ footer nav ul {
 	margin: 2em
 }
 
+/* Style pour la page de connection  */
+
+.login-form {
+	display: flex;
+    flex-direction: column;
+    align-items: center;
+	margin-top: 100px;
+}
+
+.login-form h2 {
+	margin-bottom: 37px;
+}
+
+.login-form form {
+	display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.champ {
+	display: flex;
+    flex-direction: column;
+}
+
+label {
+	margin-bottom: 7px;
+}
+
+.input-login {
+	width: 379px;
+    height: 51px;
+    margin-bottom: 30px;
+    background: #FFF;
+    box-shadow: 0px 4px 14px 0px rgba(0, 0, 0, 0.09);
+    border: none;
+}
+
+.btn-login {
+	width: 179px;
+    height: 36px;
+    flex-shrink: 0;
+    border-radius: 60px;
+    background: #1D6154;
+    border: none;
+    color: white;
+}

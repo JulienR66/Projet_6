@@ -53,34 +53,60 @@ buttons.forEach(button => {
     });
 });
 
+// function validerFormulaire(event) {
+//     event.preventDefault(); // Empêche l'envoi du formulaire par défaut
 
-// const boutonTous = document.getElementById("btnTous");
-// boutonTous.addEventListener("click", function () {
-//     genererTravaux(travaux);
-//     deselectionnerTousLesBoutons(); // Désélectionner tous les boutons
-//     button.classList.add('selected'); // Appliquer la classe 'selected' au bouton cliqué
-// });
+//     const email = document.getElementById("email").value;
+//     const motDePasse = document.getElementById("password").value;
 
-// const boutonObjets = document.getElementById("btnObjets");
-// boutonObjets.addEventListener("click", function () {
-//     const categorieObjets = travaux.filter(travail => travail.categoryId === 1);
-//     genererTravaux(categorieObjets);
-//     deselectionnerTousLesBoutons(); // Désélectionner tous les boutons
-//     button.classList.add('selected'); // Appliquer la classe 'selected' au bouton cliqué
-// });
+//     if (email === "" || motDePasse === "") {
+//         alert("Veuillez remplir tous les champs.");
+//     } else if (email === "sophie.bluel@test.tld" && motDePasse === "S0phie") {
+//         alert("Connexion réussie !");
+//         window.location.href = "index.html";
+//     } else {
+//         alert("Identifiant ou mot de passe incorrect.");
+//     }
+// }
 
-// const boutonAppartements = document.getElementById("btnAppartements");
-// boutonAppartements.addEventListener("click", function () {
-//     const categorieAppartements = travaux.filter(travail => travail.categoryId === 2);
-//     genererTravaux(categorieAppartements);
-//     deselectionnerTousLesBoutons(); // Désélectionner tous les boutons
-//     button.classList.add('selected'); // Appliquer la classe 'selected' au bouton cliqué
-// })
+// const formLogin = document.getElementById("loginForm");
 
-// const boutonHotelRestaurants = document.getElementById("btnHotelRestaurants");
-// boutonHotelRestaurants.addEventListener("click", function () {
-//     const categorieHotelRestaurants = travaux.filter(travail => travail.categoryId === 3);
-//     genererTravaux(categorieHotelRestaurants);
-//     deselectionnerTousLesBoutons(); // Désélectionner tous les boutons
-//     button.classList.add('selected'); // Appliquer la classe 'selected' au bouton cliqué
-// })
+// formLogin.addEventListener("submit", validerFormulaire);
+
+// Function to handle form submission
+
+async function validerFormulaire(event) {
+    event.preventDefault(); // Prevents the default form submission
+
+    const email = document.getElementById("email").value;
+    const motDePasse = document.getElementById("password").value;
+
+    if (email === "" || motDePasse === "") {
+        alert("Veuillez remplir tous les champs.");
+    } else {
+        // Make a POST request to the login endpoint
+        try {
+            const response = await fetch('http://localhost:5678/api/users/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ email: email, password: motDePasse })
+            });
+
+            if (response.ok) {
+                alert("Connexion réussie !");
+                window.location.href = "index.html";
+            } else {
+                alert("Identifiant ou mot de passe incorrect.");
+            }
+        } catch (error) {
+            console.error('Une erreur s\'est produite :', error);
+            alert("Erreur lors de la tentative de connexion.");
+        }
+    }
+}
+
+// Event listener for form submission
+const formLogin = document.getElementById("loginForm");
+formLogin.addEventListener("submit", validerFormulaire);
