@@ -72,5 +72,33 @@ if (userId === 1) {
     boutons.forEach(bouton => {
         bouton.style.display = 'none';
     });
-    
 }
+
+function genererTravauxModal(data) {
+    const sectionTravaux = document.querySelector(".work-preview");
+    sectionTravaux.innerHTML = ""; 
+
+    for (let i = 0; i < data.length; i++) {
+        const article = data[i];
+
+        const travauxContainer = document.createElement("div");
+
+        const imageTravaux = document.createElement("img");
+        imageTravaux.src = article.imageUrl;
+
+        const deleteIcon = document.createElement("img");
+        deleteIcon.src = 'assets/icons/trash-can-solid.png';
+
+        const deleteIconBackground = document.createElement("span");
+
+        sectionTravaux.appendChild(travauxContainer);
+
+        travauxContainer.appendChild(imageTravaux);
+        travauxContainer.appendChild(deleteIconBackground);
+        deleteIconBackground.appendChild(deleteIcon);
+
+        
+    }
+
+}
+genererTravauxModal(travaux);
