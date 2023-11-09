@@ -96,6 +96,11 @@ nav li {
 	font-size: 1.2em;
 }
 
+#btnLogin {
+	cursor: pointer;
+}
+
+
 li:hover {
 	color: #B1663C;
 }
@@ -132,6 +137,7 @@ li:hover {
 	display: flex;
 	justify-content: center;
 	gap: 15px;
+	margin-bottom: 51px;
 }
 
 .btn-filter {
@@ -145,7 +151,6 @@ li:hover {
     border-radius: 60px;
     flex-shrink: 0;
     padding: 9px 9px 9px 9px;
-    margin-bottom: 30px;
     display: flex;
     align-items: center;
     min-width: 100px;
@@ -263,4 +268,76 @@ label {
     background: #1D6154;
     border: none;
     color: white;
+}
+
+.display-none {
+	display: none;
+}
+
+.btn-open-modal {
+	position: relative;
+	left: 692px;
+	bottom: 53px;
+	text-decoration: none;
+	color: black;
+}
+
+.modal {
+	visibility: hidden;
+	opacity: 0;
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	background: rgba(0, 0, 0, 0.30);
+	height: 3326px;
+	display: flex;
+	justify-content: center;
+	transition: .4s;
+}
+
+.modal:target {
+	visibility: visible;
+	opacity: 1;
+}
+
+.modal-content {
+	width: 630px;
+    height: 670px;
+    flex-shrink: 0;
+    border-radius: 10px;
+    background: #FFF;
+    position: absolute;
+    top: 601px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.modal-content h3 {
+	text-align: center;
+	font-size: 26px;
+	margin-top: 60px;
+	margin-bottom: 46px;
+}
+
+.modal-close {
+	position: absolute;
+	right: 30px;
+	top: 26px;
+	text-decoration: none;
+	color: black;
+}
+
+.btn-modal {
+	width: 237px;
+    height: 36px;
+    flex-shrink: 0;
+    border-radius: 60px;
+    background: #1D6154;
+    border: none;
+    color: white;
+    margin-top: 38px;
+    margin-bottom: 45px;
 }

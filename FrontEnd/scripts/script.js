@@ -24,6 +24,7 @@ function genererTravaux(data) {
 
         sectionTravaux.appendChild(travauxContenant);
     }
+
 }
 
 function deselectionnerTousLesBoutons() {
@@ -53,3 +54,23 @@ buttons.forEach(button => {
     });
 });
 
+const btnLogIn = document.getElementById("btnLogin");
+
+btnLogIn.addEventListener('click', function() {
+    window.location.href = 'login.html';
+})
+
+
+
+const userId = parseInt (localStorage.getItem('userId'));
+const token = localStorage.getItem('token');
+console.log(userId);
+
+if (userId === 1) {
+    btnLogIn.innerText = 'logout';
+    const boutons = document.querySelectorAll('.btn-filter');
+    boutons.forEach(bouton => {
+        bouton.style.display = 'none';
+    });
+    
+}
