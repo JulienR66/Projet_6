@@ -298,11 +298,6 @@ label {
 	transition: .4s;
 }
 
-.modal:target {
-	visibility: visible;
-	opacity: 1;
-}
-
 .modal-content {
 	width: 630px;
     height: 670px;
@@ -376,4 +371,16 @@ label {
 .work-preview span img {
 	width: 9px;
 	height: 11px;
+}
+
+ header a {
+	text-decoration: none;
+}
+
+ header a:visited {
+	color: black;
+}
+
+ header a:hover {
+	color: #B1663C;
 }

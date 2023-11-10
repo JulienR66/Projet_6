@@ -58,9 +58,11 @@ const btnLogIn = document.getElementById("btnLogin");
 
 btnLogIn.addEventListener('click', function() {
     window.location.href = 'login.html';
+    localStorage.clear();
 })
 
-
+const modalBtn = document.querySelector('.btn-open-modal');
+modalBtn.style.display = 'none';
 
 const userId = parseInt (localStorage.getItem('userId'));
 const token = localStorage.getItem('token');
@@ -69,6 +71,7 @@ console.log(userId);
 if (userId === 1) {
     btnLogIn.innerText = 'logout';
     const boutons = document.querySelectorAll('.btn-filter');
+    modalBtn.style.display = '';
     boutons.forEach(bouton => {
         bouton.style.display = 'none';
     });
@@ -102,3 +105,30 @@ function genererTravauxModal(data) {
 
 }
 genererTravauxModal(travaux);
+
+const modalBackground = document.getElementById("modal");
+modalBackground.addEventListener('click', function(event) {
+    if(event.target === modal) {
+        modal.style.visibility = 'hidden';
+        modal.style.opacity = 0;
+        window.location.hash = '';
+    }
+});
+
+document.querySelectorAll('.btn-open-modal').forEach(function(link) {
+    link.addEventListener('click', function(event) {
+        const modalId = this.getAttribute('href').substring(1); // Récupère l'ID de la modale
+        const modal = document.getElementById(modalId);
+        modal.style.visibility = 'visible';
+        modal.style.opacity = 1;
+    });
+});
+
+document.querySelectorAll('.modal-close').forEach(function(closeBtn) {
+    closeBtn.addEventListener('click', function() {
+        const modal = this.closest('.modal');
+        modal.style.visibility = 'hidden';
+        modal.style.opacity = 0;
+        window.location.hash = ''; // Efface également le fragment d'URL
+    });
+});
