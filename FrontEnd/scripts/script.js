@@ -66,10 +66,14 @@ modalBtn.style.display = 'none';
 
 const userId = parseInt (localStorage.getItem('userId'));
 const token = localStorage.getItem('token');
-console.log(userId);
+const connexion = parseInt (localStorage.getItem('response'));
+
+
+if (connexion === 200) {
+    btnLogIn.innerText = 'logout';
+}
 
 if (userId === 1) {
-    btnLogIn.innerText = 'logout';
     const boutons = document.querySelectorAll('.btn-filter');
     modalBtn.style.display = '';
     boutons.forEach(bouton => {

@@ -18,15 +18,16 @@ async function login(email, password) {
             const data = await response.json();
             const userId = data.userId;
             const token = data.token;
-            
+        
             // Stocker le token dans le localStorage pour une utilisation ultérieure
             localStorage.setItem('token', token);
             localStorage.setItem('userId', userId);
-            
+            localStorage.setItem('response', 200);
             // Autres actions après la connexion réussie
             alert('Connexion réussie!');
             window.location.href = 'index.html'; // Redirection vers la page d'accueil
-           
+          
+
         } else if (response.status === 401) {
             // Erreur d'authentification
             alert('Identifiant ou mot de passe incorrect.');
