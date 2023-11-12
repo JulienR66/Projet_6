@@ -324,6 +324,7 @@ label {
 	top: 26px;
 	text-decoration: none;
 	color: black;
+	cursor: pointer;
 }
 
 .btn-modal {
@@ -383,4 +384,109 @@ label {
 
  header a:hover {
 	color: #B1663C;
+}
+
+.file-container {
+	width: 420px;
+	height: 169px;
+	flex-shrink: 0;
+	border-radius: 3px;
+	background: #E8F1F6;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.file-container input {
+	display: none;
+	visibility: hidden;
+}
+
+.file-container img {
+	height: 76px;
+	width: 76px;
+	margin-top: 13px;
+	margin-bottom: 6px;
+}
+
+.file-container label {
+	border-radius: 50px;
+	background: #CBD6DC;
+	width: 173px;
+	height: 36px;
+	flex-shrink: 0;
+	display: flex;
+    align-items: center;
+    justify-content: center;
+	color: #306685;
+	text-align: center;
+	font-family: Work Sans;
+	font-size: 14px;
+	font-style: normal;
+	font-weight: 500;
+	line-height: normal;
+}
+
+.file-container p {
+	margin-bottom: 19px;
+	color: #444;
+	text-align: center;
+	font-family: Work Sans;
+	font-size: 10px;
+	font-style: normal;
+	font-weight: 400;
+	line-height: normal;
+}
+
+.modal-content form {
+	display: flex;
+    flex-direction: column;
+    margin-top: 30px;display: flex;
+}
+
+.form-container input {
+	width: 420px;
+    height: 51px;
+    flex-shrink: 0;
+    padding-inline: 0;
+    padding-block: 0;
+    margin-bottom: 21px;
+    border: none;
+    background: #FFF;
+    box-shadow: 0px 4px 14px 0px rgba(0, 0, 0, 0.09);
+}
+
+.form-container select {
+	width: 420px;
+    height: 51px;
+    flex-shrink: 0;
+    background: #FFF;
+    box-shadow: 0px 4px 14px 0px rgba(0, 0, 0, 0.09);
+    border: none;
+}
+
+.form-container label {
+	color: #3D3D3D;
+	font-family: Work Sans;
+	font-size: 14px;
+	font-style: normal;
+	font-weight: 500;
+	line-height: normal;
+}
+
+.modal2 {
+	margin-bottom: 60px;
+	position: absolute;
+	top: 130px;
+	visibility: hidden;
+}
+
+.modal-return {
+	position: absolute;
+    left: 30px;
+    top: 26px;
+    text-decoration: none;
+    color: black;
+	cursor: pointer;
+	visibility: hidden;
 }
