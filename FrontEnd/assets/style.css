@@ -490,3 +490,10 @@ label {
 	cursor: pointer;
 	visibility: hidden;
 }
+ 
+.valide-btn {
+	position: absolute;
+	bottom: 9px;
+	visibility: hidden;
+	display: none;
+}

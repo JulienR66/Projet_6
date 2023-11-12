@@ -136,3 +136,30 @@ document.querySelectorAll('.modal-close').forEach(function(closeBtn) {
         window.location.hash = ''; // Efface également le fragment d'URL
     });
 });
+
+const modalTitle = document.getElementById("modalTitle");
+const btnModal = document.getElementById("btnModal");
+const valideBtn = document.getElementById("valideBtn");
+const btnReturn = document.querySelector(".modal-return");
+const modalWorks = document.querySelector(".work-preview");
+const modalSecondContent = document.querySelector(".modal2");
+
+btnModal.addEventListener("click", function() {
+    modalWorks.style.visibility = 'hidden';
+    modalSecondContent.style.visibility = 'visible';
+    btnReturn.style.visibility = 'visible';
+    btnModal.style.visibility = 'hidden';
+    valideBtn.style.visibility = 'visible';
+    valideBtn.style.display = 'block';
+    modalTitle.innerText = 'Ajout photo';
+});
+
+btnReturn.addEventListener("click", function(){
+    modalTitle.innerText = 'Galerie photo';
+    valideBtn.style.visibility = 'hidden';
+    valideBtn.style.display = 'none';
+    btnModal.style.visibility = 'visible';
+    modalWorks.style.visibility = 'visible';
+    modalSecondContent.style.visibility = 'hidden';
+    btnReturn.style.visibility = 'hidden';
+});
