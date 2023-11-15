@@ -105,10 +105,47 @@ function genererTravauxModal(data) {
         deleteIconBackground.appendChild(deleteIcon);
 
         
+        deleteIcon.addEventListener('click', function() {
+            supprimerProjet(article.id);
+        });
     }
 
 }
 genererTravauxModal(travaux);
+
+
+// Fonction pour supprimer le projet
+async function supprimerProjet(projetId) {
+    const token = localStorage.getItem('token');
+
+    const url = `http://localhost:5678/api/works/${projetId}`;
+
+    try {
+        const response = await fetch(url, {
+            method: 'DELETE',
+            headers: {
+                'Authorization': `Bearer ${token}`,
+                'Accept': '*/*',
+            },
+        });
+
+        if (response.status === 200) {
+            // Le projet a été supprimé avec succès
+            console.log('Projet supprimé avec succès.');
+            // Actualiser la liste des travaux après la suppression
+            const reponse = await fetch("http://localhost:5678/api/works");
+            const travaux = await reponse.json();
+            genererTravauxModal(travaux);
+        } else if (response.status === 401) {
+            // Erreur d'autorisation, le token peut être invalide
+            console.error('Erreur d\'autorisation. Vérifiez votre token.');
+        } else {
+            console.error(`Une erreur s'est produite lors de la suppression du projet. Code d'erreur : ${response.status}`);
+        }
+    } catch (error) {
+        console.error('Une erreur s\'est produite :', error);
+    }
+}
 
 const modalBackground = document.getElementById("modal");
 modalBackground.addEventListener('click', function(event) {
@@ -146,7 +183,9 @@ const modalSecondContent = document.querySelector(".modal2");
 
 btnModal.addEventListener("click", function() {
     modalWorks.style.visibility = 'hidden';
+    modalWorks.style.display = 'none';
     modalSecondContent.style.visibility = 'visible';
+    modalSecondContent.style.display = 'block';
     btnReturn.style.visibility = 'visible';
     btnModal.style.visibility = 'hidden';
     valideBtn.style.visibility = 'visible';
@@ -160,6 +199,117 @@ btnReturn.addEventListener("click", function(){
     valideBtn.style.display = 'none';
     btnModal.style.visibility = 'visible';
     modalWorks.style.visibility = 'visible';
+    modalWorks.style.display = 'grid';
     modalSecondContent.style.visibility = 'hidden';
+    modalSecondContent.style.display = 'none';
     btnReturn.style.visibility = 'hidden';
 });
+
+function generCategories (){
+    const categorySelect = document.getElementById('categories');
+
+    fetch('http://localhost:5678/api/categories')
+       .then(response => response.json())
+       .then(categories => {
+          categories.forEach(category => {
+             let option = document.createElement('option');
+             option.value = category.id;
+             option.textContent = category.name;
+             categorySelect.appendChild(option);
+             console.log(option);
+          });
+       })
+       .catch(error => {
+          console.error('Erreur lors de la récupération des catégories :', error);
+       });
+}
+generCategories();
+
+function previewImage(input) {
+    const preview = document.getElementById('previewImage');
+    const file = input.files[0];
+    console.log(file);
+
+    if (file) {
+        const reader = new FileReader();
+
+        reader.onload = function (e) {
+            preview.src = e.target.result;
+        };
+
+        reader.readAsDataURL(file);
+    }
+}
+
+
+function convertImageToBase64(input) {
+    const file = input.files[0];
+
+    if (file) {
+        const reader = new FileReader();
+
+        reader.onload = function (e) {
+            const base64Image = e.target.result;
+            console.log(base64Image);
+
+            // Vous pouvez maintenant envoyer base64Image à votre API
+            // Assurez-vous que votre API prend en charge les données d'image base64
+        };
+
+        reader.readAsDataURL(file);
+    }
+}
+
+document.getElementById('file').addEventListener('change', function () {
+    previewImage(this);
+    convertImageToBase64(this);
+    document.getElementById('previewImage').classList.add('preview-img');
+    document.getElementById('previewImage').classList.remove('file-container-img');
+});
+
+
+async function createProject(title, image, category) {
+    const url = 'http://localhost:5678/api/works';
+
+    try {
+        const token = localStorage.getItem('token');
+        console.log('toto', token);
+
+        const formData = new FormData();
+        formData.append('title', title);
+        formData.append('image', image);
+        formData.append('category', category);
+
+        const response = await fetch(url, {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Authorization': `Bearer ${token}`,
+            },
+            body: formData,
+        });
+
+        if (response.status === 201) {
+            // Projet créé avec succès
+            console.log('Projet ajouté avec succès.');
+            // Actualiser la liste des travaux ou effectuer toute autre action nécessaire
+        } else if (response.status === 401) {
+            // Erreur d'autorisation
+            console.error('Erreur d\'autorisation. Vérifiez votre token.');
+        } else {
+            // Gérer d'autres codes d'erreur ici
+            console.error(`Une erreur s'est produite lors de l'ajout du projet. Code d'erreur : ${response.status}`);
+        }
+    } catch (error) {
+        console.error('Une erreur s\'est produite :', error);
+    }
+}
+
+document.getElementById('valideBtn').addEventListener('click', async function(event) {
+    event.preventDefault();
+    const title = document.getElementById("title").value;
+            const image = document.getElementById("file").files[0];
+            const categories = document.getElementById("categories").value;
+    
+            await createProject(title, image, categories);
+})

@@ -9,8 +9,10 @@
 	<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Work+Sans&display=swap" rel="stylesheet">
 	<meta name="description" content="">
 	<link rel="stylesheet" href="./assets/style.css">
-	<script type="module" src="scripts/script.js"></script>
-	<script src="scripts/login.js" defer></script>
+	
+	<script type="module" src="scripts/script.js" defer></script>
+	
+
 	
 </head>
 <body>
@@ -53,28 +55,24 @@
 				<div class="work-preview">
 				</div>
 				<div class="modal2">
-					<div class="file-container">
-						<img src="assets/icons/picture-svgrepo-com 1.png" alt="">
-						<input type="file" name="file" id="file">
-						<label for="file">+ Ajouter une photo</label>
-						<p>jpg, png : 4mo max</p>
-					</div>
 					<div class="form-container">
-						<form action="#" method="post">
+						<form id="uploadForm">
+							<div class="file-container">
+								<img class="file-container-img" id="previewImage" src="assets/icons/picture-svgrepo-com 1.png" alt="">
+								<input type="file" name="image" id="file">
+								<label for="file">+ Ajouter une photo</label>
+								<p>jpg, png : 4mo max</p>
+							</div>
 							<label for="title">Titre</label>
 							<input type="text" name="title" id="title">
-							<label for="categorie">Catégorie</label>
-							<select name="categorie" id="categorie">
-								<option value="option1">Objets</option>
-								<option value="option2">Appartements</option>
-								<option value="option3">Hôtels & Restaurant</option>
-							</select>
+							<label for="categories">Catégorie</label>
+							<select name="category" id="categories"></select>
+							<button type="submit" id="valideBtn" class="btn-modal valide-btn">Valider</button>
 						</form>
 					</div>
 				</div>
 				<img src="assets/icons/Line 1.png" alt="">
 				<button id="btnModal" class="btn-modal">Ajouter une photo</button>
-				<button id="valideBtn" class="btn-modal valide-btn">Valider</button>
 			</div>
 		</div>
 		
