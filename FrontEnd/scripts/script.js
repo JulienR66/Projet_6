@@ -216,7 +216,6 @@ function generCategories (){
              option.value = category.id;
              option.textContent = category.name;
              categorySelect.appendChild(option);
-             console.log(option);
           });
        })
        .catch(error => {
@@ -250,7 +249,7 @@ function convertImageToBase64(input) {
 
         reader.onload = function (e) {
             const base64Image = e.target.result;
-            console.log(base64Image);
+        
 
             // Vous pouvez maintenant envoyer base64Image à votre API
             // Assurez-vous que votre API prend en charge les données d'image base64
@@ -273,7 +272,7 @@ async function createProject(title, image, category) {
 
     try {
         const token = localStorage.getItem('token');
-        console.log('toto', token);
+        
 
         const formData = new FormData();
         formData.append('title', title);
@@ -295,12 +294,15 @@ async function createProject(title, image, category) {
             // Actualiser la liste des travaux ou effectuer toute autre action nécessaire
         } else if (response.status === 401) {
             // Erreur d'autorisation
+            alert('Erreur d\'autorisation. Vérifiez votre token.');
             console.error('Erreur d\'autorisation. Vérifiez votre token.');
         } else {
             // Gérer d'autres codes d'erreur ici
+            alert(`Une erreur s'est produite lors de l'ajout du projet. Code d'erreur : ${response.status}`);
             console.error(`Une erreur s'est produite lors de l'ajout du projet. Code d'erreur : ${response.status}`);
         }
     } catch (error) {
+        alert('Une erreur s\'est produite :', error);
         console.error('Une erreur s\'est produite :', error);
     }
 }
@@ -308,8 +310,31 @@ async function createProject(title, image, category) {
 document.getElementById('valideBtn').addEventListener('click', async function(event) {
     event.preventDefault();
     const title = document.getElementById("title").value;
-            const image = document.getElementById("file").files[0];
-            const categories = document.getElementById("categories").value;
-    
-            await createProject(title, image, categories);
+    const image = document.getElementById("file").files[0];
+    const categories = document.getElementById("categories").value;
+
+    if (title && image && categories) {
+        await createProject(title, image, categories);
+    }
 })
+
+function updateButtonState() {
+    const valideBtn = document.getElementById("valideBtn");
+    const title = document.getElementById("title").value;
+    const image = document.getElementById("file").files[0];
+    const categories = document.getElementById("categories").value;
+    const isAllFieldsFilled = title && image && categories;
+
+    if (isAllFieldsFilled) {
+        valideBtn.classList.remove('disabled');
+        valideBtn.classList.add('enabled');
+    } else {
+        valideBtn.classList.remove('enabled');
+        valideBtn.classList.add('disabled');
+    }
+}
+
+// Mettez à jour l'état du bouton lors de tout changement dans les champs du formulaire
+document.getElementById('title').addEventListener('input', updateButtonState);
+document.getElementById('file').addEventListener('input', updateButtonState);
+document.getElementById('categories').addEventListener('input', updateButtonState);

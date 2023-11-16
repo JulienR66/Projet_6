@@ -502,6 +502,15 @@ label {
 	right: 204px;
 	visibility: hidden;
 	display: none;
+	width: 237px;
+    height: 36px;
+    flex-shrink: 0;
+    border-radius: 60px;
+    background: #1D6154;
+    border: none;
+    color: white;
+    margin-top: 38px;
+    margin-bottom: 45px;
 }
 
 .preview-img {
@@ -511,3 +520,14 @@ label {
     margin-bottom: 0px; 
     position: absolute;
 }
+
+.disabled {
+    background: #A7A7A7;
+    cursor: not-allowed;
+}
+
+.enabled {
+	background: #1D6154;
+	cursor: pointer;
+}
+
