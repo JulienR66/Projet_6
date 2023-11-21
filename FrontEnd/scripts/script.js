@@ -249,10 +249,6 @@ function convertImageToBase64(input) {
 
         reader.onload = function (e) {
             const base64Image = e.target.result;
-        
-
-            // Vous pouvez maintenant envoyer base64Image à votre API
-            // Assurez-vous que votre API prend en charge les données d'image base64
         };
 
         reader.readAsDataURL(file);
@@ -297,7 +293,6 @@ async function createProject(title, image, category) {
             alert('Erreur d\'autorisation. Vérifiez votre token.');
             console.error('Erreur d\'autorisation. Vérifiez votre token.');
         } else {
-            // Gérer d'autres codes d'erreur ici
             alert(`Une erreur s'est produite lors de l'ajout du projet. Code d'erreur : ${response.status}`);
             console.error(`Une erreur s'est produite lors de l'ajout du projet. Code d'erreur : ${response.status}`);
         }
