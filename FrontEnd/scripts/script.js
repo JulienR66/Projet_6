@@ -2,7 +2,7 @@ const reponse = await fetch("http://localhost:5678/api/works");
 const travaux = await reponse.json();
 genererTravaux(travaux);
 
-const buttons = document.querySelectorAll('.btn-filter');
+
 
 function genererTravaux(data) {
     const sectionTravaux = document.querySelector(".gallery");
@@ -32,6 +32,8 @@ function deselectionnerTousLesBoutons() {
         button.classList.remove('selected');
     });
 }
+
+const buttons = document.querySelectorAll('.btn-filter');
 
 buttons.forEach(button => {
     button.addEventListener("click", function () {
