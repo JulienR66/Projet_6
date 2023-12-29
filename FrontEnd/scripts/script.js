@@ -241,6 +241,20 @@ function previewImage(input) {
 }
 
 
+function convertImageToBase64(input) {
+    const file = input.files[0];
+
+    if (file) {
+        const reader = new FileReader();
+
+        reader.onload = function (e) {
+            const base64Image = e.target.result;
+        };
+
+        reader.readAsDataURL(file);
+    }
+}
+
 document.getElementById('file').addEventListener('change', function () {
     previewImage(this);
     convertImageToBase64(this);
